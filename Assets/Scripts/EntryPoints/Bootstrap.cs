@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Services.Core;
 using Unity.Services.Authentication;
+using System;
 
 public class Bootstrap : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class Bootstrap : MonoBehaviour
         {
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
 
+            AuthenticationService.Instance.SignedIn += OnSignedIn;
+
             if (AuthenticationService.Instance.IsSignedIn)
             {
                 string _username = PlayerPrefs.GetString("Username");
@@ -31,5 +34,11 @@ public class Bootstrap : MonoBehaviour
 
             _sceneService.SceneLoad("MainMenu");
         }
+    }
+
+    private void OnSignedIn()
+    {
+        Debug.Log(message: $"Token: {AuthenticationService.Instance.AccessToken}");
+        Debug.Log(message: $"Player ID: {AuthenticationService.Instance.PlayerId}");
     }
 }

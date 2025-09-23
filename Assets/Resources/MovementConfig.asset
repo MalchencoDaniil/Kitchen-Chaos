@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c69f397b3e3451748a3d347970088b94, type: 3}
   m_Name: MovementConfig
   m_EditorClassIdentifier: 
-  <WalkSpeed>k__BackingField: 3
-  <RunSpeed>k__BackingField: 5
-  <CrouchSpeed>k__BackingField: 2
+  <MovementSpeed>k__BackingField: 5
+  <RotationSpeed>k__BackingField: 15
