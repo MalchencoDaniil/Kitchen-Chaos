@@ -1,7 +1,10 @@
 using UnityEngine;
 
-public class PlayerTransform
+namespace KitchenChaos.Player
 {
-    public Vector3 MovementDirection;
-    public Vector3 MovementInput;
+    public class PlayerTransform
+    {
+        public Vector3 MovementDirection;
+        public Vector3 MovementInput;
+    }
 }

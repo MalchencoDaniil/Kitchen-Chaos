@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &594494092535194186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3430990472934303920}
+  m_Layer: 0
+  m_Name: PickUpPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3430990472934303920
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594494092535194186}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.74, y: 0, z: 1.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7357014755417387132}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6719427600471735721
 GameObject:
   m_ObjectHideFlags: 0
@@ -14,6 +45,9 @@ GameObject:
   - component: {fileID: 5064995939440864979}
   - component: {fileID: 9144377345015856854}
   - component: {fileID: 7133813651289313165}
+  - component: {fileID: 3211154434350956965}
+  - component: {fileID: 8315752647910530244}
+  - component: {fileID: 6123131486805175670}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -35,6 +69,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7964521392538636984}
+  - {fileID: 3430990472934303920}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &285818136268727350
@@ -152,6 +187,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movementConfig: {fileID: 11400000, guid: 8d8324e9f2a146544a753e23b2fe6368, type: 2}
   _characterController: {fileID: 9144377345015856854}
+--- !u!114 &3211154434350956965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6719427600471735721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82d371c8ecffb4b4f86c6b45edf454ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactConfig: {fileID: 11400000, guid: f8098ac4673d0a94a922190ac75834fe, type: 2}
+--- !u!114 &8315752647910530244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6719427600471735721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e23bf848b5f8b64da647367fd802f1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _highlightColor: {r: 1, g: 1, b: 1, a: 1}
+  _highlightIntensity: 1.2
+--- !u!114 &6123131486805175670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6719427600471735721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bb30df2c4c90504f9f2f7f5418bf1f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pickUpPoint: {fileID: 3430990472934303920}
 --- !u!1 &7356660560979178454
 GameObject:
   m_ObjectHideFlags: 0

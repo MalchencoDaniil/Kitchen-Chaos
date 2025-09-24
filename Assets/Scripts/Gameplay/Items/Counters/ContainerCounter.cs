@@ -1,16 +1,14 @@
-using KitchenChaos.Player;
 using UnityEngine;
 
 namespace KitchenChaos.Items.Counters
 {
-    public class ClearCounter : MonoBehaviour, IInteractable, IKitchenObjectParent
+    public class ContainerCounter : MonoBehaviour, IInteractable, IKitchenObjectParent
     {
         private PlayerPickUp _player;
 
         [SerializeField] private KitchenObjectConfig _kitchenObjectConfig;
 
         [SerializeField] private Transform _counterTopPoint;
-        [SerializeField] private ClearCounter _secondClearCounter;
 
         private KitchenObject _kitchenObject;
 

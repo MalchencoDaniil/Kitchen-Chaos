@@ -27,16 +27,13 @@ namespace KitchenChaos.Player
 
         private void CheckRaycast()
         {
-            if (Physics.Raycast(transform.position, _movementController._playerTransform.MovementDirection,
+            if (Physics.Raycast(transform.position, transform.forward,
                 out RaycastHit hit, _interactConfig.InteractDistance, _interactConfig.InteractLayer))
             {
                 var interactables = hit.collider.GetComponents<IInteractable>();
                 bool hasInteractables = interactables.Length > 0;
 
                 HandleInteractableDetection(hit.collider.gameObject, hasInteractables);
-
-                if (hasInteractables)
-                    Debug.Log($"Interactable in range: {hit.collider.name}");
             }
             else
             {
@@ -100,7 +97,7 @@ namespace KitchenChaos.Player
             {
                 Gizmos.color = Color.red;
                 Gizmos.DrawRay(transform.position,
-                    _movementController._playerTransform.MovementDirection * _interactConfig.InteractDistance);
+                    transform.forward * _interactConfig.InteractDistance);
             }
         }
     }
