@@ -2,15 +2,11 @@ using UnityEngine;
 
 namespace KitchenChaos.Items.Counters
 {
-    public class ContainerCounter : MonoBehaviour, IInteractable, IKitchenObjectParent
+    public class ContainerCounter : BaseCounter, IInteractable
     {
         private PlayerPickUp _player;
 
         [SerializeField] private KitchenObjectConfig _kitchenObjectConfig;
-
-        [SerializeField] private Transform _counterTopPoint;
-
-        private KitchenObject _kitchenObject;
 
         private void Awake()
         {
@@ -31,25 +27,6 @@ namespace KitchenChaos.Items.Counters
             {
                 _kitchenObject.SetKitchenObjectParent(_player);
             }
-        }
-
-        public Transform GetKitchenObjectFollowTransform()
-        {
-            return _counterTopPoint;
-        }
-
-        public void SetKitchenObject(KitchenObject kitchenObject) => _kitchenObject = kitchenObject;
-
-        public KitchenObject GetKitchenObject()
-        {
-            return _kitchenObject;
-        }
-
-        public void ClearKitchenObject() => _kitchenObject = null;
-
-        public bool HasKitchenObject()
-        {
-            return _kitchenObject != null;
         }
     }
 }
