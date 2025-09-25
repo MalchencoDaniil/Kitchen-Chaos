@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace KitchenChaos.Items.Counters
@@ -8,6 +9,8 @@ namespace KitchenChaos.Items.Counters
 
         [SerializeField] private KitchenObjectConfig _kitchenObjectConfig;
 
+        public event EventHandler OnGrabledObject;
+
         private void Awake()
         {
             _player = FindObjectOfType<PlayerPickUp>();
@@ -15,17 +18,15 @@ namespace KitchenChaos.Items.Counters
 
         public void Interact()
         {
-            if (_kitchenObject == null)
+            if (!_player.HasKitchenObject())
             {
                 Transform _kitchebObjectPrefab = Instantiate(_kitchenObjectConfig._prefab, _counterTopPoint.position, Quaternion.identity);
                 Debug.Log(_kitchebObjectPrefab.GetComponent<KitchenObject>().GetKitchenObjectConfig());
 
                 _kitchenObject = _kitchebObjectPrefab.GetComponent<KitchenObject>();
-                _kitchenObject.SetKitchenObjectParent(this);
-            }
-            else
-            {
                 _kitchenObject.SetKitchenObjectParent(_player);
+
+                OnGrabledObject?.Invoke(this, EventArgs.Empty);
             }
         }
     }

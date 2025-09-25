@@ -32,5 +32,17 @@ namespace KitchenChaos.Items
         {
             return _kitchenObjectParent;
         }
+
+        public void DestroySelf()
+        {
+            _kitchenObjectParent.ClearKitchenObject();
+
+            Destroy(gameObject);
+        }
+
+        public KitchenObjectConfig GetKitchenObjectSO()
+        {
+            return _kitchenObjectConfig;
+        }
     }
 }
