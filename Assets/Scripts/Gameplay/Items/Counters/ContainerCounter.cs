@@ -20,11 +20,7 @@ namespace KitchenChaos.Items.Counters
         {
             if (!_player.HasKitchenObject())
             {
-                Transform _kitchebObjectPrefab = Instantiate(_kitchenObjectConfig._prefab, _counterTopPoint.position, Quaternion.identity);
-                Debug.Log(_kitchebObjectPrefab.GetComponent<KitchenObject>().GetKitchenObjectConfig());
-
-                _kitchenObject = _kitchebObjectPrefab.GetComponent<KitchenObject>();
-                _kitchenObject.SetKitchenObjectParent(_player);
+                KitchenObject.SpawnKitchenObject(_kitchenObjectConfig, _player);
 
                 OnGrabledObject?.Invoke(this, EventArgs.Empty);
             }

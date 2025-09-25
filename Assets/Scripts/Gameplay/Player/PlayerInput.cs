@@ -13,5 +13,10 @@ namespace KitchenChaos.Player
         {
             return InputService.Instance.InputActions.Player.Interact.triggered;
         }
+
+        public bool CanInteractAlternate()
+        {
+            return InputService.Instance.InputActions.Player.InteractAlternate.triggered;
+        }
     }
 }

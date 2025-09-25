@@ -40,9 +40,14 @@ namespace KitchenChaos.Items
             Destroy(gameObject);
         }
 
-        public KitchenObjectConfig GetKitchenObjectSO()
+        public static KitchenObject SpawnKitchenObject(KitchenObjectConfig _kitchebObjecyConfig, IKitchenObjectParent _kitchenObjectParent)
         {
-            return _kitchenObjectConfig;
+            Transform _kitchenObjectTransform = Instantiate(_kitchebObjecyConfig._prefab);
+            KitchenObject _kitchenObject = _kitchenObjectTransform.GetComponent<KitchenObject>();
+
+            _kitchenObject.SetKitchenObjectParent(_kitchenObjectParent);
+
+            return _kitchenObject;
         }
     }
 }

@@ -79,6 +79,18 @@ namespace KitchenChaos.Player
 
                 ResetInteractable();
             }
+
+            if (_lastInteractableObject != null && _movementController._playerInput.CanInteractAlternate())
+            {
+                var _interactables = _lastInteractableObject.GetComponents<IInteractAlternative>();
+
+                foreach (var _interactable in _interactables)
+                {
+                    _interactable.InteractAlternative();
+                }
+
+                ResetInteractable();
+            }
         }
 
         private void ResetInteractable()

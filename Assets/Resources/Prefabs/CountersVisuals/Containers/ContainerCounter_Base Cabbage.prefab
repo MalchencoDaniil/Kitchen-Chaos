@@ -11,10 +11,10 @@ PrefabInstance:
     - target: {fileID: 540203477690669277, guid: 9a9137fa2b035d34e881701d2c178192, type: 3}
       propertyPath: _kitchenObjectConfig
       value: 
-      objectReference: {fileID: 11400000, guid: 8eef3eee4c99ebe419388f83933f3e9e, type: 2}
+      objectReference: {fileID: 11400000, guid: 0d6138867ab57374688970f9fde60777, type: 2}
     - target: {fileID: 4589716710238282922, guid: 9a9137fa2b035d34e881701d2c178192, type: 3}
       propertyPath: m_Name
-      value: ContainerCounter_Base Tomato
+      value: ContainerCounter_Base Cabbage
       objectReference: {fileID: 0}
     - target: {fileID: 4589716710238282923, guid: 9a9137fa2b035d34e881701d2c178192, type: 3}
       propertyPath: m_LocalPosition.x
@@ -59,7 +59,7 @@ PrefabInstance:
     - target: {fileID: 4841286013473667211, guid: 9a9137fa2b035d34e881701d2c178192, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 91e8fe3de9249fc44b7bdd8050062896, type: 3}
+      objectReference: {fileID: 21300000, guid: e1c23b5aded59d84da30738d3267a6c9, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
