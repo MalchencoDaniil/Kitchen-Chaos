@@ -9,6 +9,7 @@ namespace KitchenChaos.Items.Counters.Cutting
         private PlayerPickUp _player;
 
         public event EventHandler<OnProgressChangedEventArgs> OnProgressChanged;
+        public EventHandler OnCut;
 
         public class OnProgressChangedEventArgs : EventArgs
         {
@@ -60,6 +61,8 @@ namespace KitchenChaos.Items.Counters.Cutting
             if (HasKitchenObject() && HasRecipeWithInput(GetKitchenObject().GetKitchenObjectConfig()))
             {
                 _cuttingProgress++;
+
+                OnCut?.Invoke(this, EventArgs.Empty);
 
                 CuttingRecipeConfig _cuttingRecipeConfig = GetCuttingRecipeConfigWithInput(GetKitchenObject().GetKitchenObjectConfig());
                 OnProgressChanged?.Invoke(this, new OnProgressChangedEventArgs
