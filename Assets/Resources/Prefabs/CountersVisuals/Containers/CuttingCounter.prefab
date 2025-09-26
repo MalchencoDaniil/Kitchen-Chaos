@@ -308,6 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1d81e5d8c6835a46876732d2663ccd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _lookAtMode: 2
 --- !u!1 &2579303156399930669
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,7 +365,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 47962f70fa46e4b43b546811822ffcdc, type: 2}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -893,7 +894,7 @@ GameObject:
   - component: {fileID: 5454412643327031298}
   - component: {fileID: 4990167752291326518}
   m_Layer: 0
-  m_Name: CuttingCounter_Visual
+  m_Name: CuttingCounter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

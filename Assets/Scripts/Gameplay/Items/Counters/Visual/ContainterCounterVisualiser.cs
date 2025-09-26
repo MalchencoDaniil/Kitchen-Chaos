@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace KitchenChaos.Items.Counters
+namespace KitchenChaos.Items.Counters.Visual
 {
     public class ContainterCounterVisualiser : CounterVisual
     {

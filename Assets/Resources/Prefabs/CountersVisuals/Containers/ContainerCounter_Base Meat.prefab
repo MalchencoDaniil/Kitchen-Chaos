@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 540203477690669277, guid: 9a9137fa2b035d34e881701d2c178192, type: 3}
       propertyPath: _kitchenObjectConfig
       value: 
-      objectReference: {fileID: 11400000, guid: c314ac825371b794a978f50ff24b6830, type: 2}
+      objectReference: {fileID: 11400000, guid: 035c5d8f5c612c747b2dfc4d462c978c, type: 2}
     - target: {fileID: 4589716710238282922, guid: 9a9137fa2b035d34e881701d2c178192, type: 3}
       propertyPath: m_Name
       value: ContainerCounter_Base Meat

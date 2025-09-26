@@ -2,7 +2,7 @@ using KitchenChaos.Items.Counters.Cutting;
 using System;
 using UnityEngine;
 
-namespace KitchenChaos.Items.Counters
+namespace KitchenChaos.Items.Counters.Visual
 {
     public class CuttingCounterVisualiser : CounterVisual
     {
