@@ -387,6 +387,7 @@ MonoBehaviour:
   _counterTopPoint: {fileID: 7584400705831739257}
   _fryingRecipeConfigs:
   - {fileID: 11400000, guid: 9c893dd5753ca22458d8fad4f3e65b8e, type: 2}
+  - {fileID: 11400000, guid: 9f414da7fad82f14e9536f86906e2b4e, type: 2}
 --- !u!1 &5220305274835918574
 GameObject:
   m_ObjectHideFlags: 0
