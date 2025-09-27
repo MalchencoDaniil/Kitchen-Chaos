@@ -4,33 +4,40 @@ namespace KitchenChaos.Items.Counters.Stove
 {
     public class StoveCounter : BaseCounter, IInteractable
     {
+        private StateMachine _stoveStateMachine;
+
         [SerializeField] private FryingRecipeConfig[] _fryingRecipeConfigs;
 
         private PlayerPickUp _player;
 
-        private float _fryingTimer;
-        private FryingRecipeConfig _fryingRecipeConfig;
+        [Header("Stove States")]
+        private Idle _idle;
+        private Frying _frying;
+        private Fried _fried;
+
+        [HideInInspector]
+        public FryingRecipeConfig _fryingRecipeConfig;
 
         private void Start()
         {
             _player = FindObjectOfType<PlayerPickUp>();
+
+            _idle = GetComponent<Idle>();
+            _frying = GetComponent<Frying>();
+            _fried = GetComponent<Fried>();
+
+            _stoveStateMachine = new StateMachine();
+            _stoveStateMachine.Initialize(_idle);
         }
 
         private void Update()
         {
-            if (HasKitchenObject())
-            {
-                _fryingTimer += Time.deltaTime;
-
-                if (_fryingTimer > _fryingRecipeConfig.MaxFryingTimer)
-                {
-                    _fryingTimer = 0;
-
-                    GetKitchenObject().DestroySelf();
-                    KitchenObject.SpawnKitchenObject(_fryingRecipeConfig.Output, this);
-                }
-            }
+            _stoveStateMachine._currentState.UpdateState();
         }
+
+        public void FriedState() => _stoveStateMachine.ChangeState(_fried);
+
+        public void IdleState() => _stoveStateMachine.ChangeState(_idle);
 
         public void Interact()
         {
@@ -42,6 +49,8 @@ namespace KitchenChaos.Items.Counters.Stove
                     {
                         _player.GetKitchenObject().SetKitchenObjectParent(this);
                         _fryingRecipeConfig = GetFryingRecipeConfigWithInput(GetKitchenObject().GetKitchenObjectConfig());
+
+                        _stoveStateMachine.ChangeState(_frying);
                     }
                 }
             }
@@ -50,6 +59,7 @@ namespace KitchenChaos.Items.Counters.Stove
                 if (!_player.HasKitchenObject())
                 {
                     GetKitchenObject().SetKitchenObjectParent(_player);
+                    IdleState();
                 }
             }
 
@@ -71,7 +81,7 @@ namespace KitchenChaos.Items.Counters.Stove
                 return _fryingRecipeConfig.Input;
         }
 
-        private FryingRecipeConfig GetFryingRecipeConfigWithInput(KitchenObjectConfig _inputKitchenObject)
+        protected internal FryingRecipeConfig GetFryingRecipeConfigWithInput(KitchenObjectConfig _inputKitchenObject)
         {
             foreach (FryingRecipeConfig _fryingRecipeConfig in _fryingRecipeConfigs)
             {

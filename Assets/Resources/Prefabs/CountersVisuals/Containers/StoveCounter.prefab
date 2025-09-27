@@ -274,6 +274,9 @@ GameObject:
   - component: {fileID: 496015676961670754}
   - component: {fileID: 5774812417483310838}
   - component: {fileID: 3429394366757356020}
+  - component: {fileID: 6570490263521629122}
+  - component: {fileID: 1292255660544098271}
+  - component: {fileID: 1597648423642905922}
   m_Layer: 3
   m_Name: StoveCounter
   m_TagString: Untagged
@@ -388,6 +391,43 @@ MonoBehaviour:
   _fryingRecipeConfigs:
   - {fileID: 11400000, guid: 9c893dd5753ca22458d8fad4f3e65b8e, type: 2}
   - {fileID: 11400000, guid: 9f414da7fad82f14e9536f86906e2b4e, type: 2}
+  _fryingRecipeConfig: {fileID: 0}
+--- !u!114 &6570490263521629122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4998458208842551057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a965811bb62a49448b0914e496910a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1292255660544098271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4998458208842551057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a83098ffadd707742b564079f40e5d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1597648423642905922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4998458208842551057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c534a96f06aa12540bb735d856b44a7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5220305274835918574
 GameObject:
   m_ObjectHideFlags: 0
