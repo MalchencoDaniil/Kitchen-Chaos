@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: _kitchenObjectConfig
       value: 
       objectReference: {fileID: 11400000, guid: 0d6138867ab57374688970f9fde60777, type: 2}
+    - target: {fileID: 1232767586960952379, guid: 9a9137fa2b035d34e881701d2c178192, type: 3}
+      propertyPath: _counterAnimator
+      value: 
+      objectReference: {fileID: 7568747953966768938}
     - target: {fileID: 4589716710238282922, guid: 9a9137fa2b035d34e881701d2c178192, type: 3}
       propertyPath: m_Name
       value: ContainerCounter_Base Cabbage
@@ -65,3 +69,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a9137fa2b035d34e881701d2c178192, type: 3}
+--- !u!95 &7568747953966768938 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6289625630049244101, guid: 9a9137fa2b035d34e881701d2c178192, type: 3}
+  m_PrefabInstance: {fileID: 4485766674315768047}
+  m_PrefabAsset: {fileID: 0}

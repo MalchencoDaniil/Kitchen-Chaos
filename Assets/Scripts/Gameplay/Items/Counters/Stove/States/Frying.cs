@@ -1,4 +1,6 @@
 using UnityEngine;
+using static KitchenChaos.Items.Counters.Stove.StoveCounter;
+using static UnityEngine.CullingGroup;
 
 namespace KitchenChaos.Items.Counters.Stove
 {
@@ -6,26 +8,34 @@ namespace KitchenChaos.Items.Counters.Stove
     {
         private StoveCounter _stove;
 
-        private float _fryingTimer;
-
         private void Awake()
         {
             _stove = GetComponent<StoveCounter>();
         }
 
+        public override void Enter()
+        {
+            _stove._fryingTimer = 0;
+        }
+
         public override void UpdateState()
         {
-            _fryingTimer += Time.deltaTime;
+            _stove._fryingTimer += Time.deltaTime;
 
-            if (_fryingTimer > _stove._fryingRecipeConfig.MaxFryingTimer)
+            _stove.RaiseOnProgressChanged(_stove._fryingTimer);
+
+            if (_stove._fryingTimer > _stove._fryingRecipeConfig.MaxFryingTimer)
             {
                 _stove.GetKitchenObject().DestroySelf();
 
                 KitchenObject.SpawnKitchenObject(_stove._fryingRecipeConfig.Output, _stove);
 
-                _stove.FriedState();
-                _fryingTimer = 0f;
+                _stove._fryingTimer = 0f;
                 _stove._fryingRecipeConfig = _stove.GetFryingRecipeConfigWithInput(_stove.GetKitchenObject().GetKitchenObjectConfig());
+
+                _stove.RaiseOnStateChanged(_stove._stoveStateMachine._currentState);
+
+                _stove.BurnedState();
             }
         }
     }

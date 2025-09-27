@@ -7,17 +7,22 @@ namespace KitchenChaos.Items.Counters
     public class ProgressBarUI : MonoBehaviour
     {
         [SerializeField] private Image _barImage;
-        [SerializeField] private CuttingCounter _cuttingCounter;
+        [SerializeField] private BaseCounter _hasCounter;
+
+        private IHasProgress _hasProgress;
 
         private void Start()
         {
-            _cuttingCounter.OnProgressChanged += CuttingCounterOnProgressChanged;
+            if (_hasCounter.GetComponent<IHasProgress>() != null)
+                _hasProgress = _hasCounter.GetComponent<IHasProgress>();
+
+            _hasProgress.OnProgressChanged += HasProgressOnChanged;
 
             _barImage.fillAmount = 0;
             Hide();
         }
 
-        private void CuttingCounterOnProgressChanged(object _sender, CuttingCounter.OnProgressChangedEventArgs e)
+        private void HasProgressOnChanged(object _sender, IHasProgress.OnProgressChangedEventArgs e)
         {
             _barImage.fillAmount = e._progressNormalized;
 

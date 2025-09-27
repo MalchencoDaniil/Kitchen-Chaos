@@ -1,3 +1,4 @@
+using KitchenChaos.Items.Counters.Cutting;
 using UnityEngine;
 
 namespace KitchenChaos.Items.Counters.Visual
@@ -7,7 +8,7 @@ namespace KitchenChaos.Items.Counters.Visual
         public const string OPEN_CLOSE = "OpenClose";
 
         [SerializeField] private ContainerCounter _containterCounter;
-
+        [SerializeField] private Animator _counterAnimator;
         private void Awake()
         {
             _containterCounter.OnGrabledObject += VisualView;
@@ -15,7 +16,12 @@ namespace KitchenChaos.Items.Counters.Visual
 
         public override void VisualView(object sender, System.EventArgs eventArgs)
         {
-            CounterAnimator.SetTrigger(OPEN_CLOSE);
+            _counterAnimator.SetTrigger(OPEN_CLOSE);
+        }
+
+        private void OnDestroy()
+        {
+            _containterCounter.OnGrabledObject -= VisualView;
         }
     }
 }

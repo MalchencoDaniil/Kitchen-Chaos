@@ -1,22 +1,32 @@
+using KitchenChaos.Items.Counters.Cutting;
+using System;
 using UnityEngine;
 
 namespace KitchenChaos.Items.Counters.Stove
 {
-    public class StoveCounter : BaseCounter, IInteractable
+    public class StoveCounter : BaseCounter, IInteractable, IHasProgress
     {
-        private StateMachine _stoveStateMachine;
+        protected internal StateMachine _stoveStateMachine;
 
         [SerializeField] private FryingRecipeConfig[] _fryingRecipeConfigs;
+
+        public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
+        public event EventHandler<OnStateChangedEventArgs> OnStateChanged;
+        public class OnStateChangedEventArgs : EventArgs
+        {
+            public State state;
+        }
 
         private PlayerPickUp _player;
 
         [Header("Stove States")]
         private Idle _idle;
         private Frying _frying;
-        private Fried _fried;
+        private Burned _burned;
 
         [HideInInspector]
         public FryingRecipeConfig _fryingRecipeConfig;
+        protected internal float _fryingTimer;
 
         private void Start()
         {
@@ -24,10 +34,26 @@ namespace KitchenChaos.Items.Counters.Stove
 
             _idle = GetComponent<Idle>();
             _frying = GetComponent<Frying>();
-            _fried = GetComponent<Fried>();
+            _burned = GetComponent<Burned>();
 
             _stoveStateMachine = new StateMachine();
             _stoveStateMachine.Initialize(_idle);
+        }
+
+        public void RaiseOnStateChanged(State newState)
+        {
+            OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
+            {
+                state = newState
+            });
+        }
+
+        public void RaiseOnProgressChanged(float _fryingTimer)
+        {
+            OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
+            {
+                _progressNormalized = _fryingTimer / _fryingRecipeConfig.MaxFryingTimer
+            });
         }
 
         private void Update()
@@ -35,9 +61,11 @@ namespace KitchenChaos.Items.Counters.Stove
             _stoveStateMachine._currentState.UpdateState();
         }
 
-        public void FriedState() => _stoveStateMachine.ChangeState(_fried);
+        public void BurnedState() => _stoveStateMachine.ChangeState(_burned);
 
         public void IdleState() => _stoveStateMachine.ChangeState(_idle);
+
+        public void FryingState() => _stoveStateMachine.ChangeState(_frying);
 
         public void Interact()
         {
@@ -50,7 +78,10 @@ namespace KitchenChaos.Items.Counters.Stove
                         _player.GetKitchenObject().SetKitchenObjectParent(this);
                         _fryingRecipeConfig = GetFryingRecipeConfigWithInput(GetKitchenObject().GetKitchenObjectConfig());
 
-                        _stoveStateMachine.ChangeState(_frying);
+                        FryingState();
+
+                        RaiseOnStateChanged(_stoveStateMachine._currentState);
+                        RaiseOnProgressChanged(_fryingTimer);
                     }
                 }
             }
@@ -60,6 +91,9 @@ namespace KitchenChaos.Items.Counters.Stove
                 {
                     GetKitchenObject().SetKitchenObjectParent(_player);
                     IdleState();
+
+                    RaiseOnStateChanged(_stoveStateMachine._currentState);
+                    RaiseOnProgressChanged(0);
                 }
             }
 
