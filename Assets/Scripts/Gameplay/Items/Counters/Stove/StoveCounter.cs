@@ -21,7 +21,6 @@ namespace KitchenChaos.Items.Counters.Stove
             if (HasKitchenObject())
             {
                 _fryingTimer += Time.deltaTime;
-                _fryingRecipeConfig = GetFryingRecipeConfigWithInput(GetKitchenObject().GetKitchenObjectConfig());
 
                 if (_fryingTimer > _fryingRecipeConfig.MaxFryingTimer)
                 {
