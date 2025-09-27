@@ -4,17 +4,12 @@ using UnityEngine;
 
 namespace KitchenChaos.Items.Counters.Cutting
 {
-    public class CuttingCounter : BaseCounter, IInteractable, IInteractAlternative
+    public class CuttingCounter : BaseCounter, IInteractable, IInteractAlternative, IHasProgress
     {
         private PlayerPickUp _player;
 
-        public event EventHandler<OnProgressChangedEventArgs> OnProgressChanged;
-        public EventHandler OnCut;
-
-        public class OnProgressChangedEventArgs : EventArgs
-        {
-            public float _progressNormalized;
-        }
+        public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
+        public event EventHandler OnCut;
 
         [SerializeField] private CuttingRecipeConfig[] _cuttingRecipeConfgigs;
 
@@ -38,7 +33,7 @@ namespace KitchenChaos.Items.Counters.Cutting
 
                         CuttingRecipeConfig _cuttingRecipeConfig = GetCuttingRecipeConfigWithInput(GetKitchenObject().GetKitchenObjectConfig());
 
-                        OnProgressChanged?.Invoke(this, new OnProgressChangedEventArgs
+                        OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
                         {
                             _progressNormalized = (float)_cuttingProgress / _cuttingRecipeConfig.MaxCuttingProgress
                         });
@@ -50,6 +45,11 @@ namespace KitchenChaos.Items.Counters.Cutting
                 if (!_player.HasKitchenObject())
                 {
                     GetKitchenObject().SetKitchenObjectParent(_player);
+
+                    OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
+                    {
+                        _progressNormalized = 0
+                    });
                 }
             }
 
@@ -65,7 +65,7 @@ namespace KitchenChaos.Items.Counters.Cutting
                 OnCut?.Invoke(this, EventArgs.Empty);
 
                 CuttingRecipeConfig _cuttingRecipeConfig = GetCuttingRecipeConfigWithInput(GetKitchenObject().GetKitchenObjectConfig());
-                OnProgressChanged?.Invoke(this, new OnProgressChangedEventArgs
+                OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
                 {
                     _progressNormalized = (float)_cuttingProgress / _cuttingRecipeConfig.MaxCuttingProgress
                 });
