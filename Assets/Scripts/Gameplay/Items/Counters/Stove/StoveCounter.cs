@@ -1,4 +1,3 @@
-using KitchenChaos.Items.Counters.Cutting;
 using System;
 using UnityEngine;
 
