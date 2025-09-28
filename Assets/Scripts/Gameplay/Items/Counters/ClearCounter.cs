@@ -24,19 +24,29 @@ namespace KitchenChaos.Items.Counters
             }
             else
             {
-                if (!_player.HasKitchenObject())
-                {
-                    GetKitchenObject().SetKitchenObjectParent(_player);
-                }
-
                 if (_player.HasKitchenObject())
                 {
-                    if (_player.GetKitchenObject() is PlateKitchenObject)
+                    if (_player.GetKitchenObject().TryGetPlate(out PlateKitchenObject _plateKitchenObject))
                     {
-                        PlateKitchenObject _plateKitchenObject = _player.GetKitchenObject() as PlateKitchenObject;
-                        _plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectConfig());
-                        GetKitchenObject().DestroySelf();
+                        if (_plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectConfig()))
+                        {
+                            GetKitchenObject().DestroySelf();
+                        }
                     }
+                    else
+                    {
+                        if (GetKitchenObject().TryGetPlate(out _plateKitchenObject))
+                        {
+                            if (_plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectConfig()))
+                            {
+                                _player.GetKitchenObject().DestroySelf();
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    GetKitchenObject().SetKitchenObjectParent(_player);
                 }
             }
         }

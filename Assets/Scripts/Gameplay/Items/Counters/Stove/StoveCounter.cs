@@ -86,7 +86,22 @@ namespace KitchenChaos.Items.Counters.Stove
             }
             else
             {
-                if (!_player.HasKitchenObject())
+                if (_player.HasKitchenObject())
+                {
+                    if (_player.GetKitchenObject().TryGetPlate(out PlateKitchenObject _plateKitchenObject))
+                    {
+                        if (_plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectConfig()))
+                        {
+                            GetKitchenObject().DestroySelf();
+
+                            IdleState();
+
+                            RaiseOnStateChanged(_stoveStateMachine._currentState);
+                            RaiseOnProgressChanged(0);
+                        }
+                    }
+                }
+                else
                 {
                     GetKitchenObject().SetKitchenObjectParent(_player);
                     IdleState();

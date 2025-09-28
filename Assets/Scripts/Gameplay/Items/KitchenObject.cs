@@ -40,6 +40,18 @@ namespace KitchenChaos.Items
             Destroy(gameObject);
         }
 
+        public bool TryGetPlate(out PlateKitchenObject _plateKitchenObject)
+        {
+            if (this is PlateKitchenObject)
+            {
+                _plateKitchenObject = this as PlateKitchenObject;
+                return true;
+            }
+
+            _plateKitchenObject = null;
+            return false;
+        }
+
         public static KitchenObject SpawnKitchenObject(KitchenObjectConfig _kitchebObjecyConfig, IKitchenObjectParent _kitchenObjectParent)
         {
             Transform _kitchenObjectTransform = Instantiate(_kitchebObjecyConfig._prefab);

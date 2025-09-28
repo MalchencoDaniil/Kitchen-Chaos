@@ -5,6 +5,8 @@ namespace KitchenChaos.Items
 {
     public class PlateKitchenObject : KitchenObject
     {
+        [SerializeField] private List<KitchenObjectConfig> _validKitchenObjects;
+
         private List<KitchenObjectConfig> _kitchenObjectConfigs;
 
         private void Awake()
@@ -12,9 +14,20 @@ namespace KitchenChaos.Items
             _kitchenObjectConfigs = new List<KitchenObjectConfig>();
         }
 
-        public void TryAddIngredient(KitchenObjectConfig _kitchenObjectConfig)
+        public bool TryAddIngredient(KitchenObjectConfig _kitchenObjectConfig)
         {
-            _kitchenObjectConfigs.Add(_kitchenObjectConfig);
+            if (!_validKitchenObjects.Contains(_kitchenObjectConfig))
+                return false;
+
+            if (_kitchenObjectConfigs.Contains(_kitchenObjectConfig))
+            {
+                return false;
+            }
+            else
+            {
+                _kitchenObjectConfigs.Add(_kitchenObjectConfig);
+                return true;
+            }
         }
     }
 }

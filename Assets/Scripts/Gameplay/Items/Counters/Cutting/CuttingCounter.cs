@@ -42,7 +42,17 @@ namespace KitchenChaos.Items.Counters.Cutting
             }
             else
             {
-                if (!_player.HasKitchenObject())
+                if (_player.HasKitchenObject())
+                {
+                    if (_player.GetKitchenObject().TryGetPlate(out PlateKitchenObject _plateKitchenObject))
+                    {
+                        if (_plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectConfig()))
+                        {
+                            GetKitchenObject().DestroySelf();
+                        }
+                    }
+                }
+                else
                 {
                     GetKitchenObject().SetKitchenObjectParent(_player);
 
