@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3812876574508226176}
   - component: {fileID: 8630477459352557689}
   m_Layer: 0
-  m_Name: Bread_Visual
+  m_Name: Bread
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -8,7 +8,7 @@ namespace KitchenChaos.Items.Counters.Visual
 {
     public class PlatesCounterVisual : CounterVisual
     {
-        [SerializeField] private PlatesCounter _platesCounter;
+        [SerializeField] private PlateCounter _platesCounter;
         [SerializeField] private Transform _counterTopPoint;
 
         [Space(10)]

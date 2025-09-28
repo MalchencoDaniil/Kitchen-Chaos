@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace KitchenChaos.Items.Counters.Plates
 {
-    public class PlatesCounter : BaseCounter ,IInteractable
+    public class PlateCounter : BaseCounter ,IInteractable
     {
         [SerializeField] private KitchenObjectConfig _kitchenObjectConfig;
 

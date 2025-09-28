@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,6 +6,12 @@ namespace KitchenChaos.Items
 {
     public class PlateKitchenObject : KitchenObject
     {
+        public event EventHandler<OnIngredientAddedEventArgs> OnIngredientAdded;
+        public class OnIngredientAddedEventArgs : EventArgs
+        {
+            public KitchenObjectConfig _kitchenObjectConfig;
+        }
+
         [SerializeField] private List<KitchenObjectConfig> _validKitchenObjects;
 
         private List<KitchenObjectConfig> _kitchenObjectConfigs;
@@ -26,6 +33,14 @@ namespace KitchenChaos.Items
             else
             {
                 _kitchenObjectConfigs.Add(_kitchenObjectConfig);
+
+                OnIngredientAdded?.Invoke(this, new OnIngredientAddedEventArgs 
+                { 
+                    _kitchenObjectConfig = _kitchenObjectConfig
+                });
+
+                Debug.Log("_kitchenObjectConfigs.Add");
+
                 return true;
             }
         }
