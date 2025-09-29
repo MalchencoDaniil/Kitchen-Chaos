@@ -44,5 +44,10 @@ namespace KitchenChaos.Items
                 return true;
             }
         }
+
+        public List<KitchenObjectConfig> GetKitchenObjectList()
+        {
+            return _kitchenObjectConfigs;
+        }
     }
 }
