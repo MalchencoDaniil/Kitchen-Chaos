@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3812876574508226176}
   - component: {fileID: -1509026091867536540}
+  - component: {fileID: 668011142915372111}
   m_Layer: 0
   m_Name: Plate
   m_TagString: Untagged
@@ -54,6 +55,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c314ac825371b794a978f50ff24b6830, type: 2}
   - {fileID: 11400000, guid: eda587bbbfc1c4840869d903caa61436, type: 2}
   - {fileID: 11400000, guid: 8e451e060f1dbac469ec7b3904d6d7bf, type: 2}
+--- !u!114 &668011142915372111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812876574508226177}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffa2269eac8ffd24eac74aa3e090c3f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _plateKitchenObject: {fileID: 0}
+  _iconTemplate: {fileID: 0}
 --- !u!1001 &3098205093739279250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -195,8 +210,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3812876574508226177, guid: 2e332fb21cc25914ebb4bf526a05ddf6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1815741910335976726}
   m_SourcePrefab: {fileID: 100100000, guid: 2e332fb21cc25914ebb4bf526a05ddf6, type: 3}
+--- !u!1 &6682612662629745290 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3812876574508226177, guid: 2e332fb21cc25914ebb4bf526a05ddf6, type: 3}
+  m_PrefabInstance: {fileID: 7518592196651144203}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1815741910335976726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6682612662629745290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffa2269eac8ffd24eac74aa3e090c3f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _plateKitchenObject: {fileID: -1509026091867536540}
+  _iconTemplate: {fileID: 0}
 --- !u!4 &6682612662629745291 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3812876574508226176, guid: 2e332fb21cc25914ebb4bf526a05ddf6, type: 3}
