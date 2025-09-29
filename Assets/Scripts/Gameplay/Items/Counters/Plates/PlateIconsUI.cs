@@ -23,11 +23,7 @@ namespace KitchenChaos.Items.Counters.Plates
         {
             foreach (Transform child in transform)
             {
-                if (child == _iconTemplate)
-                {
-                    continue;
-                }
-
+                if (child == _iconTemplate) continue;
                 Destroy(child.gameObject);
             }
 
@@ -35,7 +31,7 @@ namespace KitchenChaos.Items.Counters.Plates
             {
                 Transform _iconTransform = Instantiate(_iconTemplate, transform);
                 _iconTransform.gameObject.SetActive(true);
-                _plateKitchenObject.GetComponent<PlateIconSingle>().SetKitchenObjectSprite(_kitchenObjectConfig);
+                _iconTransform.GetComponent<PlateIconSingleUI>().SetKitchenObjectSprite(_kitchenObjectConfig);
             }
         }
 

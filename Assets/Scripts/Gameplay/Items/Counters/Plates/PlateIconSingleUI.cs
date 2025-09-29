@@ -1,10 +1,9 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace KitchenChaos.Items.Counters.Plates
 {
-    public class PlateIconSingle : MonoBehaviour
+    public class PlateIconSingleUI : MonoBehaviour
     {
         [SerializeField] private Image _iconImage;
 
