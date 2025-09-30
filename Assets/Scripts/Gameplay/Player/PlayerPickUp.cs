@@ -1,7 +1,7 @@
-using KitchenChaos.Items;
 using UnityEngine;
+using KitchenChaos.Kitchen;
 
-public class PlayerPickUp : MonoBehaviour, KitchenChaos.Items.IKitchenObjectParent
+public class PlayerPickUp : MonoBehaviour, IKitchenObjectParent
 {
     [SerializeField] private Transform _pickUpPoint;
 
