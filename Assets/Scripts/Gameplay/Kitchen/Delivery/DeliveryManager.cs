@@ -20,27 +20,26 @@ namespace KitchenChaos.Kitchen.Delivery
         private void Start()
         {
             _waitingRecipeList = new List<RecipeConfig>();
-
-            RecipeSpawningCoroutine().Forget();
         }
 
-        private async UniTaskVoid RecipeSpawningCoroutine()
+        private float _spawnRecipeTimer = 0;
+
+        private void Update()
         {
-            while (true)
+            _spawnRecipeTimer -= Time.deltaTime;
+
+            if (_spawnRecipeTimer <= 0f)
             {
-                await UniTask.WaitForSeconds(_spawnRecipeTimerMax);
+                _spawnRecipeTimer = _spawnRecipeTimerMax;
 
                 if (_waitingRecipeList.Count < _waitingRecipesMax)
                 {
-                    RecipeConfig _waitingRecipeConfig = _recipeLists[UnityEngine.Random.Range(0, _recipeLists.Count)];
-                    Debug.Log("New Recipe: " + _waitingRecipeConfig.name);
+                    RecipeConfig waitingRecipeSO = _recipeLists[UnityEngine.Random.Range(0, _recipeLists.Count)];
+
+                    _waitingRecipeList.Add(waitingRecipeSO);
 
                     OnRecipeSpawned?.Invoke(this, EventArgs.Empty);
-
-                    _waitingRecipeList.Add(_waitingRecipeConfig);
                 }
-
-                await UniTask.Yield();
             }
         }
 

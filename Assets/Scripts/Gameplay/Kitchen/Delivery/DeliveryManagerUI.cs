@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using UnityEngine;
 
@@ -12,12 +13,17 @@ namespace KitchenChaos.Kitchen.Delivery
 
         private void Awake()
         {
-            _deliveryManager = FindObjectOfType<DeliveryManager>();
-
             _recipeTemplate.gameObject.SetActive(false);
+        }
+
+        private void Start()
+        {
+            _deliveryManager = FindObjectOfType<DeliveryManager>();
 
             _deliveryManager.OnRecipeCompleted += RecipeCompleted;
             _deliveryManager.OnRecipeSpawned += RecipeSpawned;
+
+            UpdateVisual().Forget();
         }
 
         private void OnDestroy()
@@ -28,15 +34,15 @@ namespace KitchenChaos.Kitchen.Delivery
 
         private void RecipeSpawned(object _sender, EventArgs _eventArgs)
         {
-            UpdateVisual();
+            UpdateVisual().Forget();
         }
 
         private void RecipeCompleted(object _sender, EventArgs _eventArgs)
         {
-            UpdateVisual();
+            UpdateVisual().Forget();
         }
 
-        private void UpdateVisual()
+        private async UniTaskVoid UpdateVisual()
         {
             foreach (Transform _child in _container)
             {
@@ -49,6 +55,8 @@ namespace KitchenChaos.Kitchen.Delivery
             {
                 Transform _newRecipeTemplate = Instantiate(_recipeTemplate, _container);
                 _newRecipeTemplate.gameObject.SetActive(true);
+
+                _newRecipeTemplate.GetComponent<DeliveryRecipeCellUI>().SetRecipeUIConfig(_recipeCongif);
             }
         }
     }
